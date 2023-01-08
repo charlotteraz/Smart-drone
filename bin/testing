@@ -1,0 +1,32 @@
+package items;
+
+import java.util.ArrayList;
+
+public interface Item {
+    
+    //Getters
+    public String getName();
+    public ArrayList<Item> getChildren();
+    public double getPrice();
+    public int getCoordX();
+    public int getCoordY();
+    public int getLength();
+    public int getWidth();
+    public int getHeight();
+	
+    
+    //Setters
+    public void setName(String name);
+    public void addChild(Item item);
+    public void removeChild(Item item);
+    public void setPrice(double price);
+    public void setCoordinates(int xcoord, int ycoord);
+    public void setSize(int length, int width, int height);
+
+    
+    public Item next();
+    public boolean hasNext();
+    
+    
+ 
+}

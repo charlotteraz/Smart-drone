@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="883.0" prefWidth="1005.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainSceneController">
+   <children>
+      <SplitPane fx:id="splitLeft" dividerPositions="0.5938566552901023" layoutY="-3.0" orientation="VERTICAL" prefHeight="881.0" prefWidth="384.0">
+        <items>
+          <AnchorPane fx:id="viewAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="460.0" prefWidth="411.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="27.0" text="Farm Items" />
+                  <TreeView fx:id="ItemTree" layoutX="15.0" layoutY="44.0" prefHeight="219.0" prefWidth="348.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></TreeView>
+                  <Button fx:id="buttonAdd" layoutX="15.0" layoutY="290.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" prefWidth="117.0" text="Add Item" />
+                  <Button fx:id="buttonDel" layoutX="15.0" layoutY="365.0" mnemonicParsing="false" onAction="#deleteItem" prefHeight="25.0" prefWidth="117.0" text="Delete Item" />
+                  <Button fx:id="containerBut" layoutX="15.0" layoutY="315.0" mnemonicParsing="false" onAction="#addContainer" prefHeight="25.0" prefWidth="117.0" text="Add Container" />
+                  <Button fx:id="droneBut" layoutX="15.0" layoutY="340.0" mnemonicParsing="false" onAction="#addDrone" prefHeight="25.0" prefWidth="117.0" text="Add Drone" />
+                  <Button fx:id="saveBut" layoutX="136.0" layoutY="464.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="25.0" prefWidth="105.0" text="Save Changes" />
+                  <TextField fx:id="pField" layoutX="239.0" layoutY="379.0" prefHeight="25.0" prefWidth="124.0" />
+                  <Label layoutX="148.0" layoutY="384.0" text="Purchase Price" />
+                  <Label layoutX="190.0" layoutY="286.0" text="Name" />
+                  <TextField fx:id="nameField" layoutX="239.0" layoutY="282.0" prefHeight="25.0" prefWidth="124.0" />
+                  <Label layoutX="159.0" layoutY="319.0" prefHeight="17.0" prefWidth="97.0" text="Coordinates " />
+                  <TextField layoutX="240.0" layoutY="315.0" prefHeight="25.0" prefWidth="53.0" fx:id="xField" />
+                  <TextField fx:id="yField" layoutX="307.0" layoutY="315.0" prefHeight="25.0" prefWidth="53.0" />
+                  <Label layoutX="154.0" layoutY="350.0" text="Size (L, W, H)" />
+                  <TextField fx:id="LField" layoutX="240.0" layoutY="347.0" prefHeight="25.0" prefWidth="35.0" />
+                  <TextField fx:id="WField" layoutX="282.0" layoutY="347.0" prefHeight="25.0" prefWidth="35.0" />
+                  <TextField fx:id="HField" layoutX="325.0" layoutY="347.0" prefHeight="25.0" prefWidth="35.0" />
+                  <TextField fx:id="marketValue" layoutX="239.0" layoutY="414.0" prefHeight="26.0" prefWidth="124.0" />
+                  <Label fx:id="marketValueLabel" layoutX="155.0" layoutY="418.0" text="Market Value" />
+               </children>
+            </AnchorPane>
+          <AnchorPane fx:id="actionItemPane" minHeight="0.0" minWidth="0.0" prefHeight="349.0" prefWidth="382.0">
+               <children>
+                  <Button fx:id="scanBut" layoutX="28.0" layoutY="151.0" mnemonicParsing="false" onAction="#scanFarm" prefHeight="40.0" prefWidth="326.0" text="Scan Farm">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="visitBut" layoutX="28.0" layoutY="217.0" mnemonicParsing="false" onAction="#visitFarmItem" prefHeight="40.0" prefWidth="326.0" text="Visit Item ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goHomeBut" layoutX="28.0" layoutY="278.0" mnemonicParsing="false" onAction="#goHome" prefHeight="40.0" prefWidth="326.0" text="Go Home">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <RadioButton fx:id="simulatorRadio" layoutX="28.0" layoutY="64.0" mnemonicParsing="false" text="Launch Simulator">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="launch" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="droneRadio" layoutX="28.0" layoutY="94.0" mnemonicParsing="false" text="Launch Drone" toggleGroup="$launch" />
+                  <Label layoutX="28.0" layoutY="23.0" text="Drone Actions">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <AnchorPane fx:id="drawItemPane" layoutX="386.0" layoutY="6.0" prefHeight="800" prefWidth="600">
+         <children>
+            <Canvas fx:id="drawCanvas" height="874.0" width="618.0" />
+            <ImageView fx:id="droneItemView" fitHeight="50" fitWidth="50" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../drone.png" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="itemContainerView" arcHeight="5.0" arcWidth="5.0" fill="#e4e4e4" height="200.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="200.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
